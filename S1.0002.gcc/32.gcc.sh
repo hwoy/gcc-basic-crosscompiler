@@ -13,7 +13,7 @@ decompress()
 	untar_file mpfr-4.1.0.tar.xz
 	untar_file mpc-1.2.1.tar.gz
 	untar_file isl-0.24.tar.xz
-	
+
 	untar_file ${SNAME}-${SVERSION}.tar.xz
 }
 
@@ -47,7 +47,7 @@ build()
 	ICONV=${X_BUILDDIR}/libiconv-1.16
 	_arch=x86-64
 	local _LDFLAGS_FOR_TARGET="$LDFLAGS"
-	
+
 	_config=""
 	_config="${_config} --with-gnu-as --with-gnu-ld"
 
@@ -55,25 +55,25 @@ build()
 	cd build
 
 	../src/configure --enable-languages=c,c++ \
-	--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
-	--prefix=${X_BUILDDIR}/dest \
-	-disable-win32-registry \
-	--disable-bootstrap \
-    --with-sysroot=${NEW_DISTRO_ROOT}                            \
-    --with-newlib                                  \
-    --without-headers                              \
-    --enable-initfini-array                        \
-    --disable-nls                                  \
-    --disable-shared                               \
-    --disable-multilib                             \
-    --disable-decimal-float                        \
-    --disable-threads                              \
-    --disable-libatomic                            \
-    --disable-libgomp                              \
-    --disable-libquadmath                          \
-    --disable-libssp                               \
-    --disable-libvtv                               \
-    --disable-libstdcxx                            \
+		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
+		--prefix=${X_BUILDDIR}/dest \
+		--disable-win32-registry \
+		--disable-bootstrap \
+		--with-sysroot=${NEW_DISTRO_ROOT}                            \
+		--with-newlib                                  \
+		--without-headers                              \
+		--enable-initfini-array                        \
+		--disable-nls                                  \
+		--disable-shared                               \
+		--disable-multilib                             \
+		--disable-decimal-float                        \
+		--disable-threads                              \
+		--disable-libatomic                            \
+		--disable-libgomp                              \
+		--disable-libquadmath                          \
+		--disable-libssp                               \
+		--disable-libvtv                               \
+		--disable-libstdcxx                            \
 		--with-pkgversion="${PROJECTNAME} ${REV}, Built by ${AUTHOR}" \
 		${_config} \
 		${GCC_PARAMS}
@@ -125,6 +125,5 @@ build()
 decompress
 
 prepare
-
 
 build
