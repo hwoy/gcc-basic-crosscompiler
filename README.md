@@ -1,4 +1,4 @@
-# MinGW Distro:https://github.com/hwoy/mingw-basic-crosscompile.git
+# MinGW Distro:https://github.com/hwoy/gcc-basic-crosscompiler.git
 
 Here are the build scripts for my MinGW distro.
 
