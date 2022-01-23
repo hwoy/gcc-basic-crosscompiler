@@ -64,9 +64,9 @@ build()
 	../src/configure --enable-languages=c,c++ \
 		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 		--prefix=${NEW_DISTRO_ROOT} \
-        --with-sysroot=${MINGW_PREFIX} \
-        --with-build-sysroot=${NEW_DISTRO_ROOT} \
-        --with-build-time-tools=${NEW_DISTRO_ROOT}/${X_TARGET}/bin \
+		--with-sysroot=${MINGW_PREFIX} \
+		--with-build-sysroot=${NEW_DISTRO_ROOT} \
+		--with-build-time-tools=${NEW_DISTRO_ROOT}/${X_TARGET}/bin \
 		--disable-win32-registry \
 		--disable-bootstrap \
 		--with-newlib                                  \
