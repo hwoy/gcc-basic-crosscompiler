@@ -50,6 +50,14 @@ build()
 
 	_config=""
 	_config="${_config} --with-gnu-as --with-gnu-ld"
+	#_config="${_config} --disable-tm-clone-registry"
+	#_config="${_config} --disable-tls"
+	#_config="${_config} --disable-libffi"
+	#_config="${_config} --disable-decimal-float"
+	#_config="${_config} --enable-gnu-indirect_function"
+	#_config="${_config} --with-libelf"
+	#_config="${_config} --enable-gnu-indirect_function"
+	#_config="${_config} --with-multilib-list=rmprofile"
 
 	mkdir build
 	cd build
