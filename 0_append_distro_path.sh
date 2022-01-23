@@ -13,7 +13,7 @@ export X_TARGET=x86_64-unknown-linux-gnu
 
 export NEW_DISTRO_ROOT=/c/${PROJECTNAME}
 export X_DISTRO_ROOT=/c/Temp/msys64/mingw64
-export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}
+#export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}
 
 export LDFLAGS=" "
 export CFLAGS=" "

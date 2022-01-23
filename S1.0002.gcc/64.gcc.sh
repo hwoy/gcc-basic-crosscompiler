@@ -63,10 +63,12 @@ build()
 
 	../src/configure --enable-languages=c,c++ \
 		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
-		--prefix=${X_BUILDDIR}/dest \
+		--prefix=${NEW_DISTRO_ROOT} \
+        --with-sysroot=${MINGW_PREFIX} \
+        --with-build-sysroot=${NEW_DISTRO_ROOT} \
+        --with-build-time-tools=${NEW_DISTRO_ROOT}/${X_TARGET}/bin \
 		--disable-win32-registry \
 		--disable-bootstrap \
-		--with-sysroot=${NEW_DISTRO_ROOT}                            \
 		--with-newlib                                  \
 		--without-headers                              \
 		--enable-initfini-array                        \
@@ -106,12 +108,12 @@ build()
 
 	# Build and install.
 	make $X_MAKE_JOBS V=1 all
-	make install
+	DESTDIR=${X_BUILDDIR} make install
 
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	mv c ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 
 	#rm -rf usr
@@ -120,10 +122,6 @@ build()
 	find -name "*.la" -type f -print -exec rm {} ";"
 	find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-	rm -rf ../${PROJECTNAME}
-	mkdir ../${PROJECTNAME}
-	mv * ../${PROJECTNAME}
-	mv ../${PROJECTNAME} ./
 	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }

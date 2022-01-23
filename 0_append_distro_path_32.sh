@@ -13,7 +13,7 @@ export X_TARGET=i686-unknown-linux-gnu
 
 export NEW_DISTRO_ROOT=/c/${PROJECTNAME}
 export X_DISTRO_ROOT=/c/Temp/msys64/mingw32
-export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}
+#export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}
 
 export LDFLAGS=" -Wl,--large-address-aware"
 export CFLAGS=" "

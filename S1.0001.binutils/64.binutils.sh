@@ -42,7 +42,7 @@ build()
 {
 	cd ${X_BUILDDIR}
 	mv ${SNAME}-${SVERSION} src
-	mkdir build dest
+	mkdir build
 	cd build
 
 	BINUTILS_PARAM=" --enable-64-bit-bfd"
@@ -51,7 +51,7 @@ build()
 		--build=${X_BUILD} \
 		--host=${X_HOST} \
 		--target=${X_TARGET} \
-		--prefix=${X_BUILDDIR}/dest \
+		--prefix=${NEW_DISTRO_ROOT} \
 		--disable-multilib \
 		--disable-shared \
 		--enable-lto \
@@ -61,20 +61,16 @@ build()
 		${BINUTILS_PARAM}
 
 	make $X_MAKE_JOBS all
-	make  install
+	DESTDIR=${X_BUILDDIR} make  install
 
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	mv c ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
-	rm -rf lib/*.la share
+	rm -rf ${PROJECTNAME}/lib/*.la share
 	# https://github.com/msys2/MINGW-packages/issues/7890
-	rm -rf lib/bfd-plugins/libdep.a
+	rm -rf ${PROJECTNAME}/lib/bfd-plugins/libdep.a
 
-	rm -rf ../${PROJECTNAME}
-	mkdir ../${PROJECTNAME}
-	mv * ../${PROJECTNAME}
-	mv ../${PROJECTNAME} ./
 	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 }
 
